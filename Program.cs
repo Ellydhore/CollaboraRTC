@@ -40,6 +40,8 @@ builder.Services.AddSingleton(provider =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerGen();
+builder.Services.AddControllers();
+builder.Services.AddControllersWithViews();
 // Firebase Service
 builder.Services.AddSingleton<FirestoreService>();
 
@@ -52,7 +54,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseRouting();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+});
+
 app.Run();
