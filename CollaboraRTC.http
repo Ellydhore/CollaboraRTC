@@ -1,0 +1,6 @@
+@CollaboraRTC_HostAddress = http://localhost:5293
+
+GET {{CollaboraRTC_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
